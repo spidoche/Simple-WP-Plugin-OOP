@@ -21,7 +21,7 @@
             <tr>
                 <th scope="row"><label for="text01">Text 01</label></th>
                 <td>
-                    <input id="text01" name="prefix_oop_[text01]" type="text" value="<?php if(isset($options['text01'])){ echo $options['text01'];} ?>" />
+                    <input id="text01" name="prefix_oop_[text01]" type="text" value="<?php if(isset($options['text01'])){ echo esc_attr($options['text01']);} ?>" />
                 </td>
             </tr>
 
@@ -55,7 +55,7 @@
             <tr>
                 <th scope="row"><label for="upload_url">Upload photo</label></th>
                 <td>
-                    <input type="hidden" name="prefix_oop_[upload]" id="prefix_oop_upload_url" value="<?php if(isset($options['upload'])){ echo $options['upload'];} ?>" />
+                    <input type="hidden" name="prefix_oop_[upload]" id="prefix_oop_upload_url" value="<?php if(isset($options['upload'])){ echo esc_attr($options['upload']);} ?>" />
                     <a href="#" id="prefix_oop_images_upload" class="button-secondary">Upload</a>
 
                     <div id="prefix_oop_images_upload_container">
@@ -65,8 +65,8 @@
                             $image_url = wp_get_attachment_image_src( $image_id, 'medium');
                             $image_url = $image_url[0];
                             ?>
-                            <img src="<?php echo $image_url; ?>" alt="upload image" />
-                            <span>X</span>
+                            <img src="<?php echo esc_url($image_url); ?>" alt="upload image" />
+                            <span class="button-secondary">X</span>
                         <?php } ?>
                     </div>
                 </td>
@@ -96,7 +96,7 @@
                             console.log(attachments);
 
                             $.each(attachments, function (key, attachment) {
-                                html += '<img data-id="'+attachment.id+'" src="'+attachment.sizes.medium.url+'" alt="" /><span>X</span>';
+                                html += '<img data-id="'+attachment.id+'" src="'+attachment.sizes.medium.url+'" alt="" /><span class="button-secondary">X</span>';
                                 $('#prefix_oop_upload_url').val(attachment.id);
                             });
 
